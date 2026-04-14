@@ -9,6 +9,9 @@
   --danger: #b91c1c;
   --border: #dbe2ea;
   --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
 }
 
 :root[data-theme="dark"] {
@@ -30,13 +33,14 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", "Noto Sans", Tahoma, Geneva, Verdana, sans-serif;
   background:
     radial-gradient(circle at 10% 10%, rgba(14, 165, 166, 0.1), transparent 45%),
     radial-gradient(circle at 90% 20%, rgba(238, 155, 0, 0.14), transparent 40%),
     var(--bg);
   color: var(--text);
   min-height: 100vh;
+  line-height: 1.45;
 }
 
 .app-header,
@@ -51,6 +55,7 @@ body {
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
+  padding-top: 1.2rem;
 }
 
 .app-header h1 {
@@ -80,21 +85,29 @@ body {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  padding: 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface), var(--primary-soft) 18%);
+  overflow-x: auto;
+  scrollbar-width: thin;
 }
 
 .tab-btn {
-  border: 1px solid var(--border);
-  background: var(--surface);
+  border: 1px solid transparent;
+  background: transparent;
   color: var(--text);
-  padding: 0.55rem 1rem;
+  padding: 0.62rem 1rem;
   border-radius: 999px;
   cursor: pointer;
+  white-space: nowrap;
+  transition: all 160ms ease;
 }
 
 .tab-btn.active {
   background: var(--primary);
   color: #fff;
-  border-color: var(--primary);
+  box-shadow: 0 6px 14px rgba(0, 95, 115, 0.24);
 }
 
 .tab-panel {
@@ -108,10 +121,10 @@ body {
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1rem;
+  border-radius: var(--radius-lg);
+  padding: 1.1rem;
   box-shadow: var(--shadow);
-  margin-bottom: 1rem;
+  margin-bottom: 1.05rem;
 }
 
 .subtle {
@@ -120,8 +133,8 @@ body {
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(180px, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(210px, 1fr));
+  gap: 0.95rem;
 }
 
 label {
@@ -150,6 +163,7 @@ label {
   font-size: 0.7rem;
   cursor: help;
   user-select: none;
+  transition: transform 130ms ease, background-color 130ms ease;
 }
 
 .info-icon:hover::after,
@@ -172,6 +186,12 @@ label {
   box-shadow: var(--shadow);
 }
 
+.info-icon:hover,
+.info-icon:focus-visible {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--primary-soft), #fff 12%);
+}
+
 input,
 select,
 textarea,
@@ -186,8 +206,8 @@ textarea {
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.55rem 0.65rem;
+  border-radius: var(--radius-sm);
+  padding: 0.62rem 0.72rem;
 }
 
 textarea {
@@ -202,9 +222,16 @@ button,
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  border-radius: 10px;
-  padding: 0.55rem 0.9rem;
+  border-radius: var(--radius-sm);
+  padding: 0.62rem 0.9rem;
   cursor: pointer;
+  min-height: 42px;
+  transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
 }
 
 .primary {
@@ -245,6 +272,7 @@ button,
   display: grid;
   grid-template-columns: repeat(2, minmax(260px, 1fr));
   gap: 1rem;
+  align-items: stretch;
 }
 
 .metric-list {
@@ -287,7 +315,7 @@ table {
 th,
 td {
   border: 1px solid var(--border);
-  padding: 0.55rem;
+  padding: 0.62rem;
   text-align: left;
 }
 
@@ -327,8 +355,8 @@ details pre {
 
 .mini-box {
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  padding: 0.82rem;
   background: color-mix(in srgb, var(--surface), var(--primary-soft) 30%);
 }
 
@@ -353,7 +381,7 @@ details pre {
 
 .editor-grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 
 .config-forms {
@@ -362,7 +390,7 @@ details pre {
 
 .admin-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  grid-template-columns: repeat(2, minmax(160px, 1fr));
   gap: 0.7rem;
   margin-bottom: 0.75rem;
 }
@@ -400,7 +428,7 @@ details pre {
 .app-footer {
   color: var(--subtle);
   font-size: 0.84rem;
-  padding-top: 0;
+  padding-top: 0.35rem;
 }
 
 @media (max-width: 980px) {
@@ -420,6 +448,24 @@ details pre {
 }
 
 @media (max-width: 640px) {
+  .app-header,
+  .container,
+  .app-footer {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .tabs {
+    gap: 0.35rem;
+    padding: 0.28rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .tab-btn {
+    padding: 0.56rem 0.82rem;
+    font-size: 0.9rem;
+  }
+
   .form-grid,
   .result-grid {
     grid-template-columns: 1fr;
@@ -433,6 +479,29 @@ details pre {
   .upload-btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .card {
+    padding: 0.92rem;
+    border-radius: var(--radius-md);
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+    font-size: 0.88rem;
+  }
+
+  .metric {
+    gap: 0.5rem;
+    font-size: 0.92rem;
+  }
+
+  .info-icon:hover::after,
+  .info-icon:focus-visible::after {
+    left: 0;
+    transform: none;
+    max-width: min(260px, 88vw);
   }
 }
 
