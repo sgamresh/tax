@@ -1,35 +1,72 @@
-﻿{
-  "regime": "new",
-  "standardDeduction": 75000,
-  "cessPercent": 4,
-  "rebate": {
-    "enabled": true,
-    "incomeLimit": 1200000,
-    "maxRebate": 60000
-  },
-  "basicExemption": 400000,
-  "slabs": [
-    { "min": 0, "max": 400000, "rate": 0 },
-    { "min": 400000, "max": 800000, "rate": 5 },
-    { "min": 800000, "max": 1200000, "rate": 10 },
-    { "min": 1200000, "max": 1600000, "rate": 15 },
-    { "min": 1600000, "max": 2000000, "rate": 20 },
-    { "min": 2000000, "max": 2400000, "rate": 25 },
-    { "min": 2400000, "max": null, "rate": 30 }
-  ],
-  "deductionRules": {
-    "allow80C": false,
-    "allow80D": false,
-    "allowHRA": false,
-    "allowHomeLoanInterest": false,
-    "allowOtherDeductions": false
-  },
-  "surcharge": {
-    "enabled": false,
+{
+    "regime": "new",
+    "standardDeduction": 75000,
+    "cessPercent": 4,
+    "rebate": {
+        "enabled": true,
+        "incomeLimit": 1200000,
+        "maxRebate": 60000
+    },
+    "basicExemption": 400000,
     "slabs": [
-      { "minIncome": 5000000, "rate": 10 },
-      { "minIncome": 10000000, "rate": 15 },
-      { "minIncome": 20000000, "rate": 25 }
-    ]
-  }
+        {
+            "min": 0,
+            "max": 400000,
+            "rate": 0
+        },
+        {
+            "min": 400000,
+            "max": 800000,
+            "rate": 5
+        },
+        {
+            "min": 800000,
+            "max": 1200000,
+            "rate": 10
+        },
+        {
+            "min": 1200000,
+            "max": 1600000,
+            "rate": 15
+        },
+        {
+            "min": 1600000,
+            "max": 2000000,
+            "rate": 20
+        },
+        {
+            "min": 2000000,
+            "max": 2400000,
+            "rate": 25
+        },
+        {
+            "min": 2400000,
+            "max": null,
+            "rate": 30
+        }
+    ],
+    "deductionRules": {
+        "allow80C": false,
+        "allow80D": false,
+        "allowHRA": false,
+        "allowHomeLoanInterest": false,
+        "allowOtherDeductions": false
+    },
+    "surcharge": {
+        "enabled": false,
+        "slabs": [
+            {
+                "minIncome": 5000000,
+                "rate": 10
+            },
+            {
+                "minIncome": 10000000,
+                "rate": 15
+            },
+            {
+                "minIncome": 20000000,
+                "rate": 25
+            }
+        ]
+    }
 }

@@ -211,6 +211,22 @@ export const downloadAllConfigs = () => {
   downloadConfig("settings");
 };
 
+export const saveConfigsToLocalServer = async (configs) => {
+  const response = await fetch("save-config.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(configs),
+  });
+
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok || payload.ok !== true) {
+    throw new Error(payload.error || `Failed to save configs (${response.status})`);
+  }
+
+  currentConfigs = structuredClone(configs);
+  return payload;
+};
+
 export const getDefaultSnapshot = () => structuredClone(defaultSnapshot);
 
 export const getFallbackSnapshot = () => structuredClone(FALLBACK_CONFIGS);

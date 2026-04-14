@@ -1,21 +1,30 @@
-﻿{
-  "financialYearLabel": "FY 2025-26 Defaults",
-  "defaultCessPercent": 4,
-  "deductionCaps": {
-    "section80C": 150000,
-    "section80D": 50000,
-    "homeLoanInterest": 200000
-  },
-  "surcharge": {
-    "enabled": false,
-    "slabs": [
-      { "minIncome": 5000000, "rate": 10 },
-      { "minIncome": 10000000, "rate": 15 },
-      { "minIncome": 20000000, "rate": 25 }
+{
+    "financialYearLabel": "FY 2025-26 Defaults",
+    "defaultCessPercent": 4,
+    "deductionCaps": {
+        "section80C": 150000,
+        "section80D": 50000,
+        "homeLoanInterest": 200000
+    },
+    "surcharge": {
+        "enabled": false,
+        "slabs": [
+            {
+                "minIncome": 5000000,
+                "rate": 10
+            },
+            {
+                "minIncome": 10000000,
+                "rate": 15
+            },
+            {
+                "minIncome": 20000000,
+                "rate": 25
+            }
+        ]
+    },
+    "notes": [
+        "Tax slabs and rules are editable from Admin section.",
+        "Update JSON each financial year without changing calculator logic."
     ]
-  },
-  "notes": [
-    "Tax slabs and rules are editable from Admin section.",
-    "Update JSON each financial year without changing calculator logic."
-  ]
 }

@@ -31,73 +31,59 @@
         <form id="salaryForm" novalidate>
           <div class="form-grid">
             <label>
-              Annual CTC
-              <span class="field-hint">Hint: Select your total annual compensation package.</span>
+              <span class="label-row">Annual CTC <span class="info-icon" tabindex="0" data-hint="Select your total annual compensation package." aria-label="Hint: Select your total annual compensation package.">i</span></span>
               <select name="annualCtc" data-options="annualCtc" required></select>
             </label>
             <label>
-              Basic Salary
-              <span class="field-hint">Hint: Usually 35% to 50% of CTC in many payroll structures.</span>
+              <span class="label-row">Basic Salary (Annually) <span class="info-icon" tabindex="0" data-hint="Usually 35% to 50% of annual CTC in many payroll structures." aria-label="Hint: Usually 35% to 50% of annual CTC in many payroll structures.">i</span></span>
               <select name="basicSalary" data-options="basicSalary" required></select>
             </label>
             <label>
-              HRA Received
-              <span class="field-hint">Hint: Exemption is limited to the least of HRA, rent rule, and city rule.</span>
+              <span class="label-row">HRA Received (Annually) <span class="info-icon" tabindex="0" data-hint="Exemption is limited to least of HRA, rent rule, and city rule." aria-label="Hint: Exemption is limited to least of HRA, rent rule, and city rule.">i</span></span>
               <select name="hraReceived" data-options="hraReceived"></select>
             </label>
             <label>
-              Rent Paid Annually
-              <span class="field-hint">Hint: Used for HRA exemption; only rent above 10% of basic helps.</span>
+              <span class="label-row">Rent Paid Annually <span class="info-icon" tabindex="0" data-hint="For HRA exemption, only rent above 10% of basic helps." aria-label="Hint: For HRA exemption, only rent above 10% of basic helps.">i</span></span>
               <select name="rentPaidAnnually" data-options="rentPaidAnnually"></select>
             </label>
             <label>
-              Other Allowances
-              <span class="field-hint">Hint: Optional; include fixed annual allowances not in basic/HRA.</span>
+              <span class="label-row">Other Allowances (Annually) <span class="info-icon" tabindex="0" data-hint="Optional fixed annual allowances not already in basic or HRA." aria-label="Hint: Optional fixed annual allowances not already in basic or HRA.">i</span></span>
               <select name="otherAllowances" data-options="otherAllowances"></select>
             </label>
             <label>
-              Employer PF Contribution
-              <span class="field-hint">Hint: Usually informational for CTC split; not directly deducted from your in-hand.</span>
+              <span class="label-row">Employer PF Contribution (Annually) <span class="info-icon" tabindex="0" data-hint="Informational CTC component; not directly deducted from your in-hand pay." aria-label="Hint: Informational CTC component; not directly deducted from your in-hand pay.">i</span></span>
               <select name="employerPfContribution" data-options="employerPfContribution"></select>
             </label>
             <label>
-              Employee PF Contribution
-              <span class="field-hint">Hint: Counts toward 80C cap where old regime deductions are allowed.</span>
+              <span class="label-row">Employee PF Contribution (Annually) <span class="info-icon" tabindex="0" data-hint="Counts toward 80C cap where old regime deductions are allowed." aria-label="Hint: Counts toward 80C cap where old regime deductions are allowed.">i</span></span>
               <select name="employeePfContribution" data-options="employeePfContribution"></select>
             </label>
             <label>
-              Professional Tax
-              <span class="field-hint">Hint: State-specific; common total is around 2,400 yearly in some states.</span>
+              <span class="label-row">Professional Tax (Annually) <span class="info-icon" tabindex="0" data-hint="State-specific; common total is around 2,400 yearly in some states." aria-label="Hint: State-specific; common total is around 2,400 yearly in some states.">i</span></span>
               <select name="professionalTax" data-options="professionalTax"></select>
             </label>
             <label>
-              Standard Deduction (optional override)
-              <span class="field-hint">Hint: Keep blank to use FY default from JSON settings.</span>
+              <span class="label-row">Standard Deduction (Annually, optional override) <span class="info-icon" tabindex="0" data-hint="Keep blank to use FY default from JSON settings." aria-label="Hint: Keep blank to use FY default from JSON settings.">i</span></span>
               <select name="standardDeduction" data-options="standardDeduction"></select>
             </label>
             <label>
-              80C Deductions
-              <span class="field-hint">Hint: Max claim cap used here is 1,50,000.</span>
+              <span class="label-row">80C Deductions (Annually) <span class="info-icon" tabindex="0" data-hint="Max claim cap used here is 1,50,000." aria-label="Hint: Max claim cap used here is 1,50,000.">i</span></span>
               <select name="deduction80C" data-options="deduction80C"></select>
             </label>
             <label>
-              80D Deductions
-              <span class="field-hint">Hint: Cap used here is 50,000 as per current settings JSON.</span>
+              <span class="label-row">80D Deductions (Annually) <span class="info-icon" tabindex="0" data-hint="Cap used here is 50,000 as per current settings JSON." aria-label="Hint: Cap used here is 50,000 as per current settings JSON.">i</span></span>
               <select name="deduction80D" data-options="deduction80D"></select>
             </label>
             <label>
-              Home Loan Interest
-              <span class="field-hint">Hint: Cap used here is 2,00,000 where applicable.</span>
+              <span class="label-row">Home Loan Interest (Annually) <span class="info-icon" tabindex="0" data-hint="Cap used here is 2,00,000 where applicable." aria-label="Hint: Cap used here is 2,00,000 where applicable.">i</span></span>
               <select name="homeLoanInterest" data-options="homeLoanInterest"></select>
             </label>
             <label>
-              Other Deductions
-              <span class="field-hint">Hint: Applies only if allowed in selected regime rules.</span>
+              <span class="label-row">Other Deductions (Annually) <span class="info-icon" tabindex="0" data-hint="Applies only if allowed in selected regime rules." aria-label="Hint: Applies only if allowed in selected regime rules.">i</span></span>
               <select name="otherDeductions" data-options="otherDeductions"></select>
             </label>
             <label>
-              Age Category
-              <span class="field-hint">Hint: Affects old regime basic exemption slab.</span>
+              <span class="label-row">Age Category (Annual Tax Context) <span class="info-icon" tabindex="0" data-hint="Affects old regime basic exemption slab." aria-label="Hint: Affects old regime basic exemption slab.">i</span></span>
               <select name="ageCategory" required>
                 <option value="below60">Below 60</option>
                 <option value="age60to80">60 to 80</option>
@@ -105,29 +91,25 @@
               </select>
             </label>
             <label>
-              City Type
-              <span class="field-hint">Hint: Metro uses 50% basic for HRA rule, non-metro uses 40%.</span>
+              <span class="label-row">City Type (Annual HRA Context) <span class="info-icon" tabindex="0" data-hint="Metro uses 50% basic for HRA rule, non-metro uses 40%." aria-label="Hint: Metro uses 50% basic for HRA rule, non-metro uses 40%.">i</span></span>
               <select name="cityType" required>
                 <option value="metro">Metro</option>
                 <option value="nonMetro">Non-Metro</option>
               </select>
             </label>
             <label>
-              Include Rebate (if eligible)
-              <span class="field-hint">Hint: Applies only when taxable income is within configured rebate limit.</span>
+              <span class="label-row">Include Rebate (Annual Tax, if eligible) <span class="info-icon" tabindex="0" data-hint="Applies only when taxable income is within configured rebate limit." aria-label="Hint: Applies only when taxable income is within configured rebate limit.">i</span></span>
               <select name="includeRebate" required>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
             </label>
             <label>
-              Monthly Bonus / Variable Pay (optional)
-              <span class="field-hint">Hint: Enter monthly amount; calculator annualizes it by 12.</span>
+              <span class="label-row">Monthly Bonus / Variable Pay (optional) <span class="info-icon" tabindex="0" data-hint="Enter monthly amount; calculator annualizes it by 12." aria-label="Hint: Enter monthly amount; calculator annualizes it by 12.">i</span></span>
               <select name="monthlyBonus" data-options="monthlyBonus"></select>
             </label>
             <label>
-              Other Income (optional)
-              <span class="field-hint">Hint: Include taxable side income to improve tax estimate accuracy.</span>
+              <span class="label-row">Other Income (Annually, optional) <span class="info-icon" tabindex="0" data-hint="Include taxable side income to improve estimate accuracy." aria-label="Hint: Include taxable side income to improve estimate accuracy.">i</span></span>
               <select name="otherIncome" data-options="otherIncome"></select>
             </label>
           </div>
@@ -177,42 +159,98 @@
     <section id="adminTab" class="tab-panel" role="tabpanel" aria-hidden="true">
       <article class="card">
         <h2>Admin / Edit Slabs</h2>
-        <p class="subtle">Edit tax configuration JSON in-browser, then apply, download, or upload.</p>
+        <p class="subtle">Localhost only: edit configs using forms and save directly to local JSON files.</p>
 
         <div class="button-row">
-          <button id="applyJsonBtn" type="button" class="primary">Apply Edited JSON</button>
+          <button id="saveConfigBtn" type="button" class="primary">Save Forms To Local JSON</button>
           <button id="downloadAllBtn" type="button">Download Current Slabs JSON</button>
-          <label class="upload-btn">Upload Custom Slabs JSON
-            <input id="uploadJsonInput" type="file" accept="application/json" multiple hidden />
-          </label>
           <button id="reloadDefaultsBtn" type="button">Use Current FY Default Slabs</button>
         </div>
 
         <div id="adminMessage" class="info" aria-live="polite"></div>
 
-        <div class="editor-grid">
-          <div>
+        <div class="editor-grid config-forms">
+          <div class="card">
             <div class="editor-header">
-              <h3>Old Regime JSON</h3>
+              <h3>Old Regime</h3>
               <button class="small-btn" data-download="old" type="button">Download old-regime.json</button>
             </div>
-            <textarea id="oldJsonEditor" spellcheck="false"></textarea>
+            <div class="admin-grid">
+              <label>Standard Deduction <input id="oldStandardDeduction" type="number" min="0" step="1000" /></label>
+              <label>Cess Percent <input id="oldCessPercent" type="number" min="0" step="0.1" /></label>
+              <label>Rebate Enabled
+                <select id="oldRebateEnabled"><option value="true">Yes</option><option value="false">No</option></select>
+              </label>
+              <label>Rebate Income Limit <input id="oldRebateIncomeLimit" type="number" min="0" step="1000" /></label>
+              <label>Rebate Max <input id="oldRebateMax" type="number" min="0" step="1000" /></label>
+              <label>Exemption Below 60 <input id="oldExemptionBelow60" type="number" min="0" step="1000" /></label>
+              <label>Exemption 60-80 <input id="oldExemption60to80" type="number" min="0" step="1000" /></label>
+              <label>Exemption Above 80 <input id="oldExemptionAbove80" type="number" min="0" step="1000" /></label>
+            </div>
+            <div class="admin-grid checkbox-grid">
+              <label><input id="oldAllow80C" type="checkbox" /> Allow 80C</label>
+              <label><input id="oldAllow80D" type="checkbox" /> Allow 80D</label>
+              <label><input id="oldAllowHRA" type="checkbox" /> Allow HRA</label>
+              <label><input id="oldAllowHomeLoan" type="checkbox" /> Allow Home Loan Interest</label>
+              <label><input id="oldAllowOtherDeductions" type="checkbox" /> Allow Other Deductions</label>
+              <label><input id="oldSurchargeEnabled" type="checkbox" /> Surcharge Enabled</label>
+            </div>
+            <h4>Old Slabs</h4>
+            <div id="oldSlabsEditor" class="slab-editor"></div>
+            <button id="addOldSlabBtn" class="small-btn" type="button">Add Old Slab</button>
+            <h4>Old Surcharge Slabs</h4>
+            <div id="oldSurchargeEditor" class="slab-editor"></div>
+            <button id="addOldSurchargeBtn" class="small-btn" type="button">Add Old Surcharge Slab</button>
           </div>
 
-          <div>
+          <div class="card">
             <div class="editor-header">
-              <h3>New Regime JSON</h3>
+              <h3>New Regime</h3>
               <button class="small-btn" data-download="new" type="button">Download new-regime.json</button>
             </div>
-            <textarea id="newJsonEditor" spellcheck="false"></textarea>
+            <div class="admin-grid">
+              <label>Standard Deduction <input id="newStandardDeduction" type="number" min="0" step="1000" /></label>
+              <label>Cess Percent <input id="newCessPercent" type="number" min="0" step="0.1" /></label>
+              <label>Rebate Enabled
+                <select id="newRebateEnabled"><option value="true">Yes</option><option value="false">No</option></select>
+              </label>
+              <label>Rebate Income Limit <input id="newRebateIncomeLimit" type="number" min="0" step="1000" /></label>
+              <label>Rebate Max <input id="newRebateMax" type="number" min="0" step="1000" /></label>
+            </div>
+            <div class="admin-grid checkbox-grid">
+              <label><input id="newAllow80C" type="checkbox" /> Allow 80C</label>
+              <label><input id="newAllow80D" type="checkbox" /> Allow 80D</label>
+              <label><input id="newAllowHRA" type="checkbox" /> Allow HRA</label>
+              <label><input id="newAllowHomeLoan" type="checkbox" /> Allow Home Loan Interest</label>
+              <label><input id="newAllowOtherDeductions" type="checkbox" /> Allow Other Deductions</label>
+              <label><input id="newSurchargeEnabled" type="checkbox" /> Surcharge Enabled</label>
+            </div>
+            <h4>New Slabs</h4>
+            <div id="newSlabsEditor" class="slab-editor"></div>
+            <button id="addNewSlabBtn" class="small-btn" type="button">Add New Slab</button>
+            <h4>New Surcharge Slabs</h4>
+            <div id="newSurchargeEditor" class="slab-editor"></div>
+            <button id="addNewSurchargeBtn" class="small-btn" type="button">Add New Surcharge Slab</button>
           </div>
 
-          <div>
+          <div class="card">
             <div class="editor-header">
-              <h3>Settings JSON</h3>
+              <h3>Settings</h3>
               <button class="small-btn" data-download="settings" type="button">Download settings.json</button>
             </div>
-            <textarea id="settingsJsonEditor" spellcheck="false"></textarea>
+            <div class="admin-grid">
+              <label>Financial Year Label <input id="settingsFinancialYearLabel" type="text" /></label>
+              <label>Default Cess Percent <input id="settingsDefaultCessPercent" type="number" min="0" step="0.1" /></label>
+              <label>80C Cap <input id="settingsCap80C" type="number" min="0" step="1000" /></label>
+              <label>80D Cap <input id="settingsCap80D" type="number" min="0" step="1000" /></label>
+              <label>Home Loan Interest Cap <input id="settingsCapHomeLoan" type="number" min="0" step="1000" /></label>
+              <label>Settings Surcharge Enabled
+                <select id="settingsSurchargeEnabled"><option value="true">Yes</option><option value="false">No</option></select>
+              </label>
+            </div>
+            <h4>Settings Surcharge Slabs</h4>
+            <div id="settingsSurchargeEditor" class="slab-editor"></div>
+            <button id="addSettingsSurchargeBtn" class="small-btn" type="button">Add Settings Surcharge Slab</button>
           </div>
         </div>
       </article>
