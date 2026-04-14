@@ -1,0 +1,36 @@
+﻿{
+  "regime": "old",
+  "standardDeduction": 50000,
+  "cessPercent": 4,
+  "rebate": {
+    "enabled": true,
+    "incomeLimit": 500000,
+    "maxRebate": 12500
+  },
+  "basicExemptionByAge": {
+    "below60": 250000,
+    "age60to80": 300000,
+    "above80": 500000
+  },
+  "slabs": [
+    { "min": 0, "max": 250000, "rate": 0 },
+    { "min": 250000, "max": 500000, "rate": 5 },
+    { "min": 500000, "max": 1000000, "rate": 20 },
+    { "min": 1000000, "max": null, "rate": 30 }
+  ],
+  "deductionRules": {
+    "allow80C": true,
+    "allow80D": true,
+    "allowHRA": true,
+    "allowHomeLoanInterest": true,
+    "allowOtherDeductions": true
+  },
+  "surcharge": {
+    "enabled": false,
+    "slabs": [
+      { "minIncome": 5000000, "rate": 10 },
+      { "minIncome": 10000000, "rate": 15 },
+      { "minIncome": 20000000, "rate": 25 }
+    ]
+  }
+}

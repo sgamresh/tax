@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>India Salary Tax Comparison</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>India Salary Tax Comparison</h1>
+      <p>Estimate take-home salary under Old vs New Tax Regime</p>
+    </div>
+    <div class="header-actions">
+      <button id="themeToggle" class="ghost-btn" type="button">Toggle Theme</button>
+      <button id="printBtn" class="ghost-btn" type="button">Print Result</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="tabs" role="tablist" aria-label="Tax comparison tabs">
+      <button class="tab-btn active" data-tab="calculator" role="tab" aria-selected="true">Calculator</button>
+      <button class="tab-btn" data-tab="admin" role="tab" aria-selected="false">Admin / Edit Slabs</button>
+    </div>
+
+    <section id="calculatorTab" class="tab-panel active" role="tabpanel">
+      <article class="card">
+        <h2>Salary Inputs</h2>
+        <p class="subtle">Select annual values in INR. Choose nearest value for quick estimate.</p>
+        <form id="salaryForm" novalidate>
+          <div class="form-grid">
+            <label>
+              Annual CTC
+              <span class="field-hint">Hint: Select your total annual compensation package.</span>
+              <select name="annualCtc" data-options="annualCtc" required></select>
+            </label>
+            <label>
+              Basic Salary
+              <span class="field-hint">Hint: Usually 35% to 50% of CTC in many payroll structures.</span>
+              <select name="basicSalary" data-options="basicSalary" required></select>
+            </label>
+            <label>
+              HRA Received
+              <span class="field-hint">Hint: Exemption is limited to the least of HRA, rent rule, and city rule.</span>
+              <select name="hraReceived" data-options="hraReceived"></select>
+            </label>
+            <label>
+              Rent Paid Annually
+              <span class="field-hint">Hint: Used for HRA exemption; only rent above 10% of basic helps.</span>
+              <select name="rentPaidAnnually" data-options="rentPaidAnnually"></select>
+            </label>
+            <label>
+              Other Allowances
+              <span class="field-hint">Hint: Optional; include fixed annual allowances not in basic/HRA.</span>
+              <select name="otherAllowances" data-options="otherAllowances"></select>
+            </label>
+            <label>
+              Employer PF Contribution
+              <span class="field-hint">Hint: Usually informational for CTC split; not directly deducted from your in-hand.</span>
+              <select name="employerPfContribution" data-options="employerPfContribution"></select>
+            </label>
+            <label>
+              Employee PF Contribution
+              <span class="field-hint">Hint: Counts toward 80C cap where old regime deductions are allowed.</span>
+              <select name="employeePfContribution" data-options="employeePfContribution"></select>
+            </label>
+            <label>
+              Professional Tax
+              <span class="field-hint">Hint: State-specific; common total is around 2,400 yearly in some states.</span>
+              <select name="professionalTax" data-options="professionalTax"></select>
+            </label>
+            <label>
+              Standard Deduction (optional override)
+              <span class="field-hint">Hint: Keep blank to use FY default from JSON settings.</span>
+              <select name="standardDeduction" data-options="standardDeduction"></select>
+            </label>
+            <label>
+              80C Deductions
+              <span class="field-hint">Hint: Max claim cap used here is 1,50,000.</span>
+              <select name="deduction80C" data-options="deduction80C"></select>
+            </label>
+            <label>
+              80D Deductions
+              <span class="field-hint">Hint: Cap used here is 50,000 as per current settings JSON.</span>
+              <select name="deduction80D" data-options="deduction80D"></select>
+            </label>
+            <label>
+              Home Loan Interest
+              <span class="field-hint">Hint: Cap used here is 2,00,000 where applicable.</span>
+              <select name="homeLoanInterest" data-options="homeLoanInterest"></select>
+            </label>
+            <label>
+              Other Deductions
+              <span class="field-hint">Hint: Applies only if allowed in selected regime rules.</span>
+              <select name="otherDeductions" data-options="otherDeductions"></select>
+            </label>
+            <label>
+              Age Category
+              <span class="field-hint">Hint: Affects old regime basic exemption slab.</span>
+              <select name="ageCategory" required>
+                <option value="below60">Below 60</option>
+                <option value="age60to80">60 to 80</option>
+                <option value="above80">Above 80</option>
+              </select>
+            </label>
+            <label>
+              City Type
+              <span class="field-hint">Hint: Metro uses 50% basic for HRA rule, non-metro uses 40%.</span>
+              <select name="cityType" required>
+                <option value="metro">Metro</option>
+                <option value="nonMetro">Non-Metro</option>
+              </select>
+            </label>
+            <label>
+              Include Rebate (if eligible)
+              <span class="field-hint">Hint: Applies only when taxable income is within configured rebate limit.</span>
+              <select name="includeRebate" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </label>
+            <label>
+              Monthly Bonus / Variable Pay (optional)
+              <span class="field-hint">Hint: Enter monthly amount; calculator annualizes it by 12.</span>
+              <select name="monthlyBonus" data-options="monthlyBonus"></select>
+            </label>
+            <label>
+              Other Income (optional)
+              <span class="field-hint">Hint: Include taxable side income to improve tax estimate accuracy.</span>
+              <select name="otherIncome" data-options="otherIncome"></select>
+            </label>
+          </div>
+
+          <div id="formError" class="error" aria-live="polite"></div>
+
+          <div class="button-row">
+            <button type="submit" class="primary">Calculate</button>
+            <button id="resetBtn" type="button">Reset</button>
+            <button id="sampleBtn" type="button">Use Sample Data</button>
+            <button id="useDefaultsBtn" type="button">Use Current FY Default Slabs</button>
+          </div>
+        </form>
+      </article>
+
+      <section id="resultsSection" class="results hidden" aria-live="polite">
+        <article class="card recommendation" id="recommendationCard"></article>
+
+        <div class="result-grid">
+          <article class="card" id="oldResultCard"></article>
+          <article class="card" id="newResultCard"></article>
+        </div>
+
+        <article class="card">
+          <h3>Old vs New Regime Comparison</h3>
+          <div class="table-wrap">
+            <table id="comparisonTable">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Old Regime</th>
+                  <th>New Regime</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Monthly vs Annual Take-home Snapshot</h3>
+          <div id="miniSummary" class="mini-summary"></div>
+        </article>
+      </section>
+    </section>
+
+    <section id="adminTab" class="tab-panel" role="tabpanel" aria-hidden="true">
+      <article class="card">
+        <h2>Admin / Edit Slabs</h2>
+        <p class="subtle">Edit tax configuration JSON in-browser, then apply, download, or upload.</p>
+
+        <div class="button-row">
+          <button id="applyJsonBtn" type="button" class="primary">Apply Edited JSON</button>
+          <button id="downloadAllBtn" type="button">Download Current Slabs JSON</button>
+          <label class="upload-btn">Upload Custom Slabs JSON
+            <input id="uploadJsonInput" type="file" accept="application/json" multiple hidden />
+          </label>
+          <button id="reloadDefaultsBtn" type="button">Use Current FY Default Slabs</button>
+        </div>
+
+        <div id="adminMessage" class="info" aria-live="polite"></div>
+
+        <div class="editor-grid">
+          <div>
+            <div class="editor-header">
+              <h3>Old Regime JSON</h3>
+              <button class="small-btn" data-download="old" type="button">Download old-regime.json</button>
+            </div>
+            <textarea id="oldJsonEditor" spellcheck="false"></textarea>
+          </div>
+
+          <div>
+            <div class="editor-header">
+              <h3>New Regime JSON</h3>
+              <button class="small-btn" data-download="new" type="button">Download new-regime.json</button>
+            </div>
+            <textarea id="newJsonEditor" spellcheck="false"></textarea>
+          </div>
+
+          <div>
+            <div class="editor-header">
+              <h3>Settings JSON</h3>
+              <button class="small-btn" data-download="settings" type="button">Download settings.json</button>
+            </div>
+            <textarea id="settingsJsonEditor" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>
+      This calculator is an estimation tool for educational use only, not legal or tax advice.
+      Actual payroll and tax liability may differ due to employer-specific components, exemptions,
+      perquisites, surcharge rules, and government notifications.
+    </p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
