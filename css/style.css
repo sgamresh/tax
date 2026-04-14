@@ -336,6 +336,21 @@ details pre {
   display: none;
 }
 
+.help-rules {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.7rem;
+}
+
+.help-sources {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.help-sources li {
+  margin: 0.35rem 0;
+}
+
 .editor-grid {
   display: grid;
   gap: 1rem;

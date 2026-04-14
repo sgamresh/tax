@@ -23,6 +23,22 @@
             }
         ]
     },
+    "taxRuleReference": {
+        "assessmentYearLabel": "AY 2026-27",
+        "financialYearLabel": "FY 2025-26",
+        "applicableFrom": "2025-04-01",
+        "applicableTo": "2026-03-31",
+        "sources": [
+            {
+                "label": "Income Tax Department: Salaried Individuals for AY 2026-27",
+                "url": "https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1"
+            },
+            {
+                "label": "Income Tax Department: Finance Bill 2025 and Budget Material",
+                "url": "https://incometaxindia.gov.in/Pages/budget-and-bills/finance-bills.aspx"
+            }
+        ]
+    },
     "notes": [
         "Tax slabs and rules are editable from Admin section.",
         "Update JSON each financial year without changing calculator logic."

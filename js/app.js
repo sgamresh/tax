@@ -16,6 +16,7 @@ const els = {
   adminTabButton: document.querySelector('.tab-btn[data-tab="admin"]'),
   panels: {
     calculator: document.getElementById("calculatorTab"),
+    help: document.getElementById("helpTab"),
     admin: document.getElementById("adminTab"),
   },
   themeToggle: document.getElementById("themeToggle"),
@@ -35,6 +36,12 @@ const els = {
   saveConfigBtn: document.getElementById("saveConfigBtn"),
   downloadAllBtn: document.getElementById("downloadAllBtn"),
   adminMessage: document.getElementById("adminMessage"),
+  helpMeta: document.getElementById("helpMeta"),
+  helpOldRules: document.getElementById("helpOldRules"),
+  helpNewRules: document.getElementById("helpNewRules"),
+  helpOldSlabBody: document.getElementById("helpOldSlabBody"),
+  helpNewSlabBody: document.getElementById("helpNewSlabBody"),
+  helpSources: document.getElementById("helpSources"),
   perFileDownloadButtons: document.querySelectorAll("[data-download]"),
 };
 
@@ -282,6 +289,56 @@ const renderResults = (comparison) => {
     <div class="mini-box"><h4>Difference</h4><p>Monthly: <strong>${asCurrency(Math.abs(diffMonthly))}</strong> ${diffMonthly >= 0 ? "(Old higher)" : "(New higher)"}</p><p>Annual: <strong>${asCurrency(Math.abs(diffAnnual))}</strong> ${diffAnnual >= 0 ? "(Old higher)" : "(New higher)"}</p></div>
   `;
   els.resultsSection.classList.remove("hidden");
+};
+
+const slabLabel = (slab) => {
+  if (slab.max === null) return `Above ${asCurrency(slab.min)}`;
+  return `${asCurrency(slab.min)} to ${asCurrency(slab.max)}`;
+};
+
+const renderHelpSlabs = (tbody, slabs) => {
+  tbody.innerHTML = (slabs || [])
+    .map((slab) => `<tr><td>${slabLabel(slab)}</td><td>${toFixedIfNeeded(Number(slab.rate || 0))}%</td></tr>`)
+    .join("");
+};
+
+const boolText = (flag) => (flag ? "Yes" : "No");
+
+const addRuleItems = (container, rules) => {
+  container.innerHTML = rules.map((rule) => `<div>${rule}</div>`).join("");
+};
+
+const renderHelpFromState = () => {
+  const configs = getConfigs();
+  const ref = configs.settings?.taxRuleReference || {};
+  const ay = ref.assessmentYearLabel || "AY 2026-27";
+  const fy = ref.financialYearLabel || "FY 2025-26";
+  const fromDate = ref.applicableFrom || "2025-04-01";
+  const toDate = ref.applicableTo || "2026-03-31";
+
+  els.helpMeta.textContent = `Rules shown below are what this calculator currently applies. Government applicability: ${ay} (${fy}), for income period ${fromDate} to ${toDate}.`;
+
+  addRuleItems(els.helpOldRules, [
+    `Standard Deduction (Annually): ${asCurrency(configs.old.standardDeduction)}`,
+    `Rebate u/s 87A: ${boolText(configs.old.rebate?.enabled)} (income limit ${asCurrency(configs.old.rebate?.incomeLimit || 0)}, max rebate ${asCurrency(configs.old.rebate?.maxRebate || 0)})`,
+    `Cess: ${toFixedIfNeeded(Number(configs.old.cessPercent || 0))}%`,
+    `Deductions allowed: 80C ${boolText(configs.old.deductionRules?.allow80C)}, 80D ${boolText(configs.old.deductionRules?.allow80D)}, HRA ${boolText(configs.old.deductionRules?.allowHRA)}, Home Loan Interest ${boolText(configs.old.deductionRules?.allowHomeLoanInterest)}, Other ${boolText(configs.old.deductionRules?.allowOtherDeductions)}`,
+  ]);
+
+  addRuleItems(els.helpNewRules, [
+    `Standard Deduction (Annually): ${asCurrency(configs.new.standardDeduction)}`,
+    `Rebate u/s 87A: ${boolText(configs.new.rebate?.enabled)} (income limit ${asCurrency(configs.new.rebate?.incomeLimit || 0)}, max rebate ${asCurrency(configs.new.rebate?.maxRebate || 0)})`,
+    `Cess: ${toFixedIfNeeded(Number(configs.new.cessPercent || 0))}%`,
+    `Deductions allowed: 80C ${boolText(configs.new.deductionRules?.allow80C)}, 80D ${boolText(configs.new.deductionRules?.allow80D)}, HRA ${boolText(configs.new.deductionRules?.allowHRA)}, Home Loan Interest ${boolText(configs.new.deductionRules?.allowHomeLoanInterest)}, Other ${boolText(configs.new.deductionRules?.allowOtherDeductions)}`,
+  ]);
+
+  renderHelpSlabs(els.helpOldSlabBody, configs.old.slabs);
+  renderHelpSlabs(els.helpNewSlabBody, configs.new.slabs);
+
+  const sources = Array.isArray(ref.sources) ? ref.sources : [];
+  els.helpSources.innerHTML = sources
+    .map((src) => `<li><a href="${src.url}" target="_blank" rel="noopener noreferrer">${src.label}</a></li>`)
+    .join("");
 };
 
 const setFormValues = (values) => {
@@ -552,6 +609,7 @@ const initEventListeners = () => {
   els.useDefaultsBtn.addEventListener("click", () => {
     resetToDefaults();
     if (isLocalhost) renderAdminFormsFromState();
+    renderHelpFromState();
     showAdminMessage("Default FY slab config restored.");
   });
 
@@ -559,6 +617,7 @@ const initEventListeners = () => {
     els.reloadDefaultsBtn.addEventListener("click", () => {
       resetToDefaults();
       renderAdminFormsFromState();
+      renderHelpFromState();
       showAdminMessage("Default FY slab config restored in forms.");
     });
   }
@@ -574,6 +633,7 @@ const initEventListeners = () => {
         validateAdminConfigs(updated);
         setConfigs(updated);
         await saveConfigsToLocalServer(updated);
+        renderHelpFromState();
         showAdminMessage("Saved successfully to local data/*.json files.");
       } catch (error) {
         showAdminMessage(error.message || "Could not save local config files.", true);
@@ -601,6 +661,7 @@ const init = async () => {
   populateNumericSelects();
   setupTheme();
   enforceLocalhostAdminVisibility();
+  renderHelpFromState();
   if (isLocalhost) {
     renderAdminFormsFromState();
     wireAdminDynamicButtons();

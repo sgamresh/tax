@@ -71,6 +71,22 @@ const FALLBACK_CONFIGS = {
         { minIncome: 20000000, rate: 25 },
       ],
     },
+    taxRuleReference: {
+      assessmentYearLabel: "AY 2026-27",
+      financialYearLabel: "FY 2025-26",
+      applicableFrom: "2025-04-01",
+      applicableTo: "2026-03-31",
+      sources: [
+        {
+          label: "Income Tax Department: Salaried Individuals for AY 2026-27",
+          url: "https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1",
+        },
+        {
+          label: "Income Tax Department: Finance Bill 2025 and Budget Material",
+          url: "https://incometaxindia.gov.in/Pages/budget-and-bills/finance-bills.aspx",
+        },
+      ],
+    },
     disclaimers: [
       "For estimation only; not a legal tax opinion.",
       "Final payroll may vary by employer policy and tax interpretations.",
